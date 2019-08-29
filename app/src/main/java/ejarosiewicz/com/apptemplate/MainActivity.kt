@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity;
+import ejarosiewicz.com.apptemplate.requester.view.RequesterActivity
 
 import kotlinx.android.synthetic.main.activity_main2.*
 
@@ -15,8 +16,8 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         fab.setOnClickListener { view ->
-//            val intent = Intent(this, MainActivity::class.java)
-//            startActivity(intent)
+            val intent = Intent(this, RequesterActivity::class.java)
+            startActivity(intent)
         }
     }
 
