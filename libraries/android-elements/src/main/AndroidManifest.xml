@@ -1,0 +1,10 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:dist="http://schemas.android.com/apk/distribution"
+          package="ejarosiewicz.com.android">
+    <dist:module
+            dist:onDemand="true"
+            dist:instant="false">
+        <dist:fusing dist:include="true"/>
+    </dist:module>
+</manifest>
+

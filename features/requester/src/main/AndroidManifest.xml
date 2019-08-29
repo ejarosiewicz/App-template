@@ -1,0 +1,35 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:dist="http://schemas.android.com/apk/distribution"
+          package="ejarosiewicz.com.requester">
+    <dist:module
+            dist:onDemand="false"
+            dist:instant="false"
+            dist:title="@string/title_requester">
+        <dist:fusing dist:include="true"/>
+    </dist:module>
+<application
+        android:hasCode="false">
+    <activity
+            android:name="ejarosiewicz.com.apptemplate.requester.view.RequesterActivity"
+            android:label="@string/app_name">
+
+        <intent-filter
+                android:autoVerify="true"
+                android:order="1">
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            <category android:name="android.intent.category.DEFAULT" />
+
+            <data android:host="multi-feature.instantappsample.com" />
+            <data android:pathPrefix="/main" />
+            <data android:scheme="https" />
+            <data android:scheme="http" />
+
+        </intent-filter>
+        <meta-data
+                android:name="default-url"
+                android:value="https://multi-feature.instantappsample.com/main" />
+    </activity>
+</application>
+</manifest>
+
