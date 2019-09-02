@@ -10,8 +10,8 @@ abstract class RequestActivityModule {
 
 //    @Binds
 //    @IntoMap
-//    @ClassKey(RequesterViewModel::class)
-//    abstract fun bindsViewModel(requesterViewModel: RequesterViewModel): ViewModel
+//    @ClassKey(RequesterViewModelImpl::class)
+//    abstract fun bindsViewModel(requesterViewModel: RequesterViewModelImpl): ViewModel
 
     @ContributesAndroidInjector
     abstract fun bindsRequesterActivity(): RequesterActivity

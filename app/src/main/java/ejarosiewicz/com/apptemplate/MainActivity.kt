@@ -2,10 +2,8 @@ package ejarosiewicz.com.apptemplate
 
 import android.content.Intent
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity
 import ejarosiewicz.com.apptemplate.requester.view.RequesterActivity
-
 import kotlinx.android.synthetic.main.activity_main2.*
 
 class MainActivity : AppCompatActivity() {
