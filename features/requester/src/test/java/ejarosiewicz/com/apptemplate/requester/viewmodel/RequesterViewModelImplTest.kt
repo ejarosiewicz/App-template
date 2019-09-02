@@ -3,14 +3,16 @@ package ejarosiewicz.com.apptemplate.requester.viewmodel
 import androidx.lifecycle.Observer
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
+import ejarosiewicz.com.apptemplate.requester.usecase.GetDataFromWebUseCase
 import org.junit.Before
 import org.junit.Test
 
 class RequesterViewModelImplTest {
 
     private val mockStateObserver: Observer<String> = mock()
+    private val mockGetDataFromWebUseCase: GetDataFromWebUseCase = mock()
 
-    private val systemUnderTest = RequesterViewModelImpl()
+    private val systemUnderTest = RequesterViewModelImpl(mockGetDataFromWebUseCase)
 
     @Before
     fun `Set up`(){
@@ -18,7 +20,13 @@ class RequesterViewModelImplTest {
     }
 
     @Test
-    fun loadDataFromWeb() {
+    fun `Use get data from web use case to get data`() {
+        systemUnderTest.loadDataFromWeb()
+
+        verify(mockStateObserver).onChanged(STUB_RESPONSE)
+    }
+    @Test
+    fun `Fetch data from web`() {
         systemUnderTest.loadDataFromWeb()
 
         verify(mockStateObserver).onChanged(STUB_RESPONSE)
