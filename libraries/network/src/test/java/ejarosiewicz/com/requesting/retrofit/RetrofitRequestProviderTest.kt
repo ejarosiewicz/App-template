@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test
 
 class RetrofitRequestProviderTest {
 
-    private val mockSomeApi: SomeApi = mock ()
+    private val mockSomeApi: SomeApi = mock()
 
     private val systemUnderTest = RetrofitRequestProvider(mockSomeApi)
 
