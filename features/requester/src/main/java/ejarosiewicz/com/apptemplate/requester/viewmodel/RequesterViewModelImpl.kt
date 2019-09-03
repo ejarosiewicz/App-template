@@ -4,19 +4,23 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import ejarosiewicz.com.apptemplate.requester.RequesterViewModel
 import ejarosiewicz.com.apptemplate.requester.usecase.GetDataFromWebUseCase
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
+import ejarosiewicz.com.async.Scheduler
 
-class RequesterViewModelImpl(private val getDataFromWebUseCase: GetDataFromWebUseCase) : ViewModel(), RequesterViewModel {
+class RequesterViewModelImpl(
+    private val getDataFromWebUseCase: GetDataFromWebUseCase,
+    private val scheduler: Scheduler
+) : ViewModel(), RequesterViewModel {
 
+    private val subscriberTag = this::class.toString()
 
     val request = MutableLiveData<String>()
 
     override fun loadDataFromWeb() {
-        getDataFromWebUseCase.load()
-            .observeOn(Schedulers.io())
-            .subscribeOn(AndroidSchedulers.mainThread())
-            .subscribe ({ data -> onLoadDataSuccess(data)},{error-> onReceiveError(error) })
+        scheduler.schedule(
+            subscriber = subscriberTag,
+            source = getDataFromWebUseCase.load(),
+            onComplete = { data -> onLoadDataSuccess(data) },
+            onError = { throwable -> onReceiveError(throwable) })
     }
 
     private fun onLoadDataSuccess(data: String) {
@@ -26,5 +30,4 @@ class RequesterViewModelImpl(private val getDataFromWebUseCase: GetDataFromWebUs
     private fun onReceiveError(error: Throwable?) {
 
     }
-
 }
