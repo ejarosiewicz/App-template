@@ -28,6 +28,5 @@ class RequesterViewModelImpl(
     }
 
     private fun onReceiveError(error: Throwable?) {
-
     }
 }
