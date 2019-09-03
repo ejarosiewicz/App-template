@@ -4,7 +4,7 @@ import ejarosiewicz.com.requesting.NetworkConstants
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class RetrofitConfig  {
+object RetrofitConfig {
 
     fun createApi(): SomeApi {
         val retrofit = Retrofit.Builder()
@@ -12,7 +12,6 @@ class RetrofitConfig  {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
-       return retrofit.create(SomeApi::class.java)
+        return retrofit.create(SomeApi::class.java)
     }
-
 }

@@ -5,8 +5,9 @@ import androidx.lifecycle.ViewModel
 import ejarosiewicz.com.apptemplate.requester.RequesterViewModel
 import ejarosiewicz.com.apptemplate.requester.usecase.GetDataFromWebUseCase
 import ejarosiewicz.com.async.Scheduler
+import javax.inject.Inject
 
-class RequesterViewModelImpl(
+class RequesterViewModelImpl @Inject constructor(
     private val getDataFromWebUseCase: GetDataFromWebUseCase,
     private val scheduler: Scheduler
 ) : ViewModel(), RequesterViewModel {

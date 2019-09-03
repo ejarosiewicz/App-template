@@ -5,11 +5,15 @@ import dagger.Component
 import dagger.android.AndroidInjectionModule
 import ejarosiewicz.com.apptemplate.MainApplication
 
-@Component(modules = [AndroidInjectionModule::class, MainApplicationModule::class])
-interface MainApplicationComponent{
+@Component(
+    modules = [AndroidInjectionModule::class,
+        FeaturesModule::class,
+        LibrariesModule::class]
+)
+interface MainApplicationComponent {
 
     @Component.Builder
-    interface Builder{
+    interface Builder {
 
         @BindsInstance
         fun application(application: MainApplication): Builder
@@ -18,5 +22,5 @@ interface MainApplicationComponent{
     }
 
 
-   fun inject(application: MainApplication)
+    fun inject(application: MainApplication)
 }

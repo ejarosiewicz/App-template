@@ -1,12 +1,11 @@
 package ejarosiewicz.com.apptemplate.requester.di
 
-import android.app.Application
 import dagger.Component
 import ejarosiewicz.com.apptemplate.requester.view.RequesterActivity
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [RequestActivityModule::class])
+@Component(modules = [RequesterModule::class])
 interface RequesterComponent{
 
     @Component.Builder

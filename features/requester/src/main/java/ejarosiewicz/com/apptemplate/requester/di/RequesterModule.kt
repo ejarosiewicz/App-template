@@ -6,12 +6,11 @@ import dagger.Module
 import dagger.android.ContributesAndroidInjector
 import dagger.multibindings.ClassKey
 import dagger.multibindings.IntoMap
-import ejarosiewicz.com.android.di.AndroidElementsModule
 import ejarosiewicz.com.apptemplate.requester.view.RequesterActivity
 import ejarosiewicz.com.apptemplate.requester.viewmodel.RequesterViewModelImpl
 
-@Module(includes = [AndroidElementsModule::class])
-abstract class RequestActivityModule {
+@Module
+abstract class RequesterModule {
 
     @Binds
     @IntoMap
