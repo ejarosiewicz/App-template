@@ -3,7 +3,7 @@ package ejarosiewicz.com.async.di
 import dagger.Binds
 import dagger.Module
 import ejarosiewicz.com.async.AndroidScheduler
-import io.reactivex.Scheduler
+import ejarosiewicz.com.async.Scheduler
 
 @Module
 abstract class AsyncModule {
