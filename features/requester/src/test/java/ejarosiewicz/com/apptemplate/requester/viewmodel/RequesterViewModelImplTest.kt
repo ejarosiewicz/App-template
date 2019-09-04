@@ -2,9 +2,10 @@ package ejarosiewicz.com.apptemplate.requester.viewmodel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
-import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
+import com.nhaarman.mockitokotlin2.whenever
+import ejarosiewicz.com.android.logger.Logger
 import ejarosiewicz.com.apptemplate.requester.usecase.GetDataFromWebUseCase
 import ejarosiewicz.com.async.Scheduler
 import ejarosiewicz.com.async.TestScheduler
@@ -22,11 +23,10 @@ class RequesterViewModelImplTest {
     private val testScheduler: Scheduler = TestScheduler()
 
     private val mockStateObserver: Observer<String> = mock()
-    private val mockGetDataFromWebUseCase: GetDataFromWebUseCase = mock {
-        on { load() } doReturn Single.just(STUB_RESPONSE)
-    }
+    private val mockGetDataFromWebUseCase: GetDataFromWebUseCase = mock()
+    private val mockLogger: Logger = mock()
 
-    private val systemUnderTest = RequesterViewModelImpl(mockGetDataFromWebUseCase, testScheduler)
+    private val systemUnderTest = RequesterViewModelImpl(mockGetDataFromWebUseCase, testScheduler, mockLogger)
 
     @Before
     fun `Set up`() {
@@ -35,6 +35,8 @@ class RequesterViewModelImplTest {
 
     @Test
     fun `Use get data from web use case to get data`() {
+        givenDataFromWeb()
+
         systemUnderTest.loadDataFromWeb()
 
         verify(mockGetDataFromWebUseCase).load()
@@ -42,13 +44,35 @@ class RequesterViewModelImplTest {
 
     @Test
     fun `Fetch data from web`() {
+        givenDataFromWeb()
+
         systemUnderTest.loadDataFromWeb()
 
         verify(mockStateObserver).onChanged(STUB_RESPONSE)
     }
 
+    @Test
+    fun `Log error`() {
+        givenErrorFromWeb()
+
+        systemUnderTest.loadDataFromWeb()
+
+        verify(mockLogger).logError(RequesterViewModelImpl::class.toString(), EXCEPTION_MESSAGE)
+    }
+
+    private fun givenErrorFromWeb() {
+        whenever(mockGetDataFromWebUseCase.load()).thenReturn(Single.error(EXCEPTION))
+    }
+
+    private fun givenDataFromWeb() {
+        whenever(mockGetDataFromWebUseCase.load()).thenReturn(Single.just(STUB_RESPONSE))
+    }
+
     companion object {
 
         private const val STUB_RESPONSE = "Hello"
+        private const val EXCEPTION_MESSAGE = "You smell"
+
+        private val EXCEPTION = IllegalAccessException(EXCEPTION_MESSAGE)
     }
 }

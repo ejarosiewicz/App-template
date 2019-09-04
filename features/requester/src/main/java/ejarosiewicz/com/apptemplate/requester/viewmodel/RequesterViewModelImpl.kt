@@ -2,6 +2,7 @@ package ejarosiewicz.com.apptemplate.requester.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import ejarosiewicz.com.android.logger.Logger
 import ejarosiewicz.com.apptemplate.requester.RequesterViewModel
 import ejarosiewicz.com.apptemplate.requester.usecase.GetDataFromWebUseCase
 import ejarosiewicz.com.async.Scheduler
@@ -9,7 +10,8 @@ import javax.inject.Inject
 
 class RequesterViewModelImpl @Inject constructor(
     private val getDataFromWebUseCase: GetDataFromWebUseCase,
-    private val scheduler: Scheduler
+    private val scheduler: Scheduler,
+    private val logger: Logger
 ) : ViewModel(), RequesterViewModel {
 
     private val subscriberTag = this::class.toString()
@@ -28,6 +30,7 @@ class RequesterViewModelImpl @Inject constructor(
         request.value = data
     }
 
-    private fun onReceiveError(error: Throwable?) {
+    private fun onReceiveError(error: Throwable) {
+        logger.logError(this::class.toString(), error.message.orEmpty())
     }
 }
