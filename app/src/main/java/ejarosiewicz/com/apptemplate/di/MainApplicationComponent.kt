@@ -4,7 +4,9 @@ import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
 import ejarosiewicz.com.apptemplate.MainApplication
+import javax.inject.Singleton
 
+@Singleton
 @Component(
     modules = [AndroidInjectionModule::class,
         FeaturesModule::class,
