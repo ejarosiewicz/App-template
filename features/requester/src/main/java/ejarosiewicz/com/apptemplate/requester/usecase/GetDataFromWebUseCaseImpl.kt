@@ -5,7 +5,9 @@ import ejarosiewicz.com.apptemplate.requester.usecase.data.DataToShow
 import ejarosiewicz.com.requesting.RequestProvider
 import io.reactivex.Single
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class GetDataFromWebUseCaseImpl @Inject constructor(private val requestProvider: RequestProvider,
                                                     private val converter: SomeDataToDataToShowConverter) :
     GetDataFromWebUseCase {
