@@ -7,6 +7,7 @@ import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
 import ejarosiewicz.com.android.logger.Logger
 import ejarosiewicz.com.apptemplate.requester.usecase.GetDataFromWebUseCase
+import ejarosiewicz.com.apptemplate.requester.usecase.data.DataToShow
 import ejarosiewicz.com.async.Scheduler
 import ejarosiewicz.com.async.TestScheduler
 import io.reactivex.Single
@@ -48,7 +49,7 @@ class RequesterViewModelImplTest {
 
         systemUnderTest.loadDataFromWeb()
 
-        verify(mockStateObserver).onChanged(STUB_RESPONSE)
+        verify(mockStateObserver).onChanged(STUB_RESPONSE_TEXT)
     }
 
     @Test
@@ -70,9 +71,10 @@ class RequesterViewModelImplTest {
 
     companion object {
 
-        private const val STUB_RESPONSE = "Hello"
+        private const val STUB_RESPONSE_TEXT = "Hello"
         private const val EXCEPTION_MESSAGE = "You smell"
 
+        private  val STUB_RESPONSE = DataToShow(STUB_RESPONSE_TEXT)
         private val EXCEPTION = IllegalAccessException(EXCEPTION_MESSAGE)
     }
 }

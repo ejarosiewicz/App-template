@@ -29,6 +29,7 @@ dependencies {
     testImplementation "android.arch.core:core-testing:$archCoreTestingVersion"
     testImplementation "org.mockito:mockito-core:$mockitoVersion"
     testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockitoKotlinVersion"
+    testImplementation "com.willowtreeapps.assertk:assertk-jvm:$assertkVersion"
 
 
     androidTestImplementation 'com.android.support.test:runner:1.0.2'

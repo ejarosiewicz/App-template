@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import ejarosiewicz.com.android.logger.Logger
 import ejarosiewicz.com.apptemplate.requester.RequesterViewModel
 import ejarosiewicz.com.apptemplate.requester.usecase.GetDataFromWebUseCase
+import ejarosiewicz.com.apptemplate.requester.usecase.data.DataToShow
 import ejarosiewicz.com.async.Scheduler
 import javax.inject.Inject
 
@@ -26,8 +27,8 @@ class RequesterViewModelImpl @Inject constructor(
             onError = { throwable -> onReceiveError(throwable) })
     }
 
-    private fun onLoadDataSuccess(data: String) {
-        request.value = data
+    private fun onLoadDataSuccess(data: DataToShow) {
+        request.value = data.text
     }
 
     private fun onReceiveError(error: Throwable) {
