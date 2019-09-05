@@ -11,6 +11,11 @@ android {
     defaultConfig {
         applicationId "ejarosiewicz.com.apptemplate.x"
     }
+    buildTypes {
+        dexOptions {
+            matchingFallbacks = ['release', 'debug']
+        }
+    }
 }
 
 kapt {
@@ -43,4 +48,10 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test:rules:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    androidTestImplementation 'com.mauriciotogneri:greencoffee:3.5.0'
+
 }

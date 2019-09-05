@@ -7,6 +7,7 @@ apply from: "../../androidconfig.gradle"
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(path:':app', configuration: 'default')
     implementation project(':libraries:android-elements')
     implementation project(':libraries:network')
     implementation project(':libraries:async')
@@ -30,11 +31,4 @@ dependencies {
     testImplementation "org.mockito:mockito-core:$mockitoVersion"
     testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockitoKotlinVersion"
     testImplementation "com.willowtreeapps.assertk:assertk-jvm:$assertkVersion"
-
-
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test:rules:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    androidTestImplementation 'com.mauriciotogneri:greencoffee:3.5.0'
-
 }
