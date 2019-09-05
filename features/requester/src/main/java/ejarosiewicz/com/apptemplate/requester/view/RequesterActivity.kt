@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import androidx.test.espresso.idling.CountingIdlingResource
 import dagger.android.AndroidInjection
 import ejarosiewicz.com.apptemplate.requester.viewmodel.RequesterViewModelImpl
 import ejarosiewicz.com.requester.R
@@ -17,6 +18,8 @@ class RequesterActivity : AppCompatActivity() {
     @Inject
     lateinit var viewModeFactory: ViewModelProvider.Factory
 
+    val idlingResource = CountingIdlingResource(this::class.toString())
+
     private lateinit var viewModel: RequesterViewModelImpl
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,7 +27,7 @@ class RequesterActivity : AppCompatActivity() {
         AndroidInjection.inject(this)
         setContentView(R.layout.activity_requester)
         setupViewModel()
-        textView.setOnClickListener { viewModel.loadDataFromWeb() }
+        textView.setOnClickListener { loadDataFromWeb() }
     }
 
     override fun onDestroy() {
@@ -38,7 +41,13 @@ class RequesterActivity : AppCompatActivity() {
         viewModel.request.observe(this, Observer { data -> onDataReceived(data) })
     }
 
+    private fun loadDataFromWeb(){
+        idlingResource.increment()
+        viewModel.loadDataFromWeb()
+    }
+
     private fun onDataReceived(data: String) {
         textView.text = data
+        idlingResource.decrement()
     }
 }
