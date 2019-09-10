@@ -1,4 +1,4 @@
-package ejarosiewicz.com.requesting
+package ejarosiewicz.com.network
 
 object NetworkConstants {
 

@@ -1,6 +1,6 @@
-package ejarosiewicz.com.requesting.retrofit
+package ejarosiewicz.com.network.retrofit
 
-import ejarosiewicz.com.requesting.NetworkConstants
+import ejarosiewicz.com.network.NetworkConstants
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory

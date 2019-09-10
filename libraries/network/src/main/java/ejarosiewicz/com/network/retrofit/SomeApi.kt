@@ -1,7 +1,7 @@
-package ejarosiewicz.com.requesting.retrofit
+package ejarosiewicz.com.network.retrofit
 
-import ejarosiewicz.com.requesting.NetworkConstants
-import ejarosiewicz.com.requesting.data.SomeData
+import ejarosiewicz.com.network.NetworkConstants
+import ejarosiewicz.com.network.data.SomeData
 import io.reactivex.Single
 import retrofit2.http.GET
 

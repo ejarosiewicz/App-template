@@ -1,9 +1,9 @@
-package ejarosiewicz.com.requesting.di
+package ejarosiewicz.com.network.di
 
 import dagger.Binds
 import dagger.Module
-import ejarosiewicz.com.requesting.RequestProvider
-import ejarosiewicz.com.requesting.retrofit.RetrofitRequestProvider
+import ejarosiewicz.com.network.RequestProvider
+import ejarosiewicz.com.network.retrofit.RetrofitRequestProvider
 
 @Module(includes = [RetrofitModule::class])
 abstract class NetworkModule {

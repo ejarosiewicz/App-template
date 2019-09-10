@@ -2,7 +2,7 @@ package ejarosiewicz.com.apptemplate.requester.usecase.converter
 
 import assertk.assertThat
 import assertk.assertions.isEqualTo
-import ejarosiewicz.com.requesting.data.SomeData
+import ejarosiewicz.com.network.data.SomeData
 import org.junit.Test
 
 class SomeDataToDataToShowConverterImplTest{

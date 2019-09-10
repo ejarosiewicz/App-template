@@ -1,6 +1,6 @@
-package ejarosiewicz.com.requesting.retrofit
+package ejarosiewicz.com.network.retrofit
 
-import ejarosiewicz.com.requesting.RequestProvider
+import ejarosiewicz.com.network.RequestProvider
 import javax.inject.Inject
 
 class RetrofitRequestProvider @Inject constructor(private val someApi: SomeApi) : RequestProvider {

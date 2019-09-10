@@ -1,8 +1,8 @@
-package ejarosiewicz.com.requesting.retrofit
+package ejarosiewicz.com.network.retrofit
 
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
-import org.junit.jupiter.api.Test
+import org.junit.Test
 
 class RetrofitRequestProviderTest {
 

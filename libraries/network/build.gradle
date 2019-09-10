@@ -2,7 +2,6 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'de.mannodermaus.android-junit5'
 
 apply from: "../../androidconfig.gradle"
 
@@ -18,10 +17,11 @@ dependencies {
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitRxJavaAdapterVersion"
     kapt "com.google.dagger:dagger-compiler:$daggerVersion"
     kapt "com.google.dagger:dagger-android-processor:$daggerVersion"
-    testImplementation "org.junit.jupiter:junit-jupiter-params:$junitVersion"
-    testImplementation "com.willowtreeapps.assertk:assertk-jvm:$assertkVersion"
+    testImplementation 'junit:junit:4.12'
+    testImplementation "android.arch.core:core-testing:$archCoreTestingVersion"
     testImplementation "org.mockito:mockito-core:$mockitoVersion"
     testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockitoKotlinVersion"
+    testImplementation "com.willowtreeapps.assertk:assertk-jvm:$assertkVersion"
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 }

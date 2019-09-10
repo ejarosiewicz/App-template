@@ -5,9 +5,8 @@ import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import ejarosiewicz.com.apptemplate.requester.usecase.converter.SomeDataToDataToShowConverter
 import ejarosiewicz.com.apptemplate.requester.usecase.data.DataToShow
-import ejarosiewicz.com.async.TestScheduler
-import ejarosiewicz.com.requesting.RequestProvider
-import ejarosiewicz.com.requesting.data.SomeData
+import ejarosiewicz.com.network.RequestProvider
+import ejarosiewicz.com.network.data.SomeData
 import io.reactivex.Single
 import org.junit.Test
 
