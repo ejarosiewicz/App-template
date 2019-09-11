@@ -4,12 +4,18 @@ import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
 import ejarosiewicz.com.apptemplate.MainApplication
+import javax.inject.Singleton
 
-@Component(modules = [AndroidInjectionModule::class, MainApplicationModule::class])
-interface MainApplicationComponent{
+@Singleton
+@Component(
+    modules = [AndroidInjectionModule::class,
+        FeaturesModule::class,
+        LibrariesModule::class]
+)
+interface MainApplicationComponent {
 
     @Component.Builder
-    interface Builder{
+    interface Builder {
 
         @BindsInstance
         fun application(application: MainApplication): Builder
@@ -18,5 +24,5 @@ interface MainApplicationComponent{
     }
 
 
-   fun inject(application: MainApplication)
+    fun inject(application: MainApplication)
 }
