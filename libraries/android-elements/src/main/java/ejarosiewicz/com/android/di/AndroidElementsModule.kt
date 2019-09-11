@@ -9,7 +9,6 @@ import ejarosiewicz.com.android.viewmodelfactory.GlobalViewModelFactory
 import javax.inject.Singleton
 
 @Module
-@Singleton
 abstract class AndroidElementsModule {
 
     @Binds
