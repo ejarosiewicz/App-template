@@ -1,6 +1,5 @@
 package ejarosiewicz.com.apptemplate.requester.test.steps
 
-
 import com.mauriciotogneri.greencoffee.GreenCoffeeSteps
 import com.mauriciotogneri.greencoffee.annotations.Given
 import com.mauriciotogneri.greencoffee.annotations.Then
