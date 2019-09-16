@@ -42,7 +42,7 @@ class RequestSteps: GreenCoffeeSteps() {
     @Then("^I see no error message on the screen$")
     fun verifyNoNetworkMessage() {
         basic {
-            matchText(R.id.errorPrompt, "world")
+            matchSnackbarText("No network connection")
         }
     }
 }

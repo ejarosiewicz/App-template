@@ -4,6 +4,7 @@ import android.content.Context
 import android.net.wifi.WifiManager
 import android.telephony.TelephonyManager
 import androidx.core.content.ContextCompat
+import androidx.test.espresso.Espresso
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.ViewInteraction
 import androidx.test.espresso.action.ViewActions
@@ -22,12 +23,17 @@ class BasicRobot {
     fun onView(resId: Int) =
         onView((withId(resId)))
 
+    fun onSnackbar() =
+       onView((withId(com.google.android.material.R.id.snackbar_text)))
+
     fun ViewInteraction.matchText(text: String) =
         check(ViewAssertions.matches(ViewMatchers.withText(text)))
 
     fun matchText(resId: Int, text: String) =
         onView(resId).matchText(text)
 
+    fun matchSnackbarText(text: String) =
+        onSnackbar().matchText(text)
 
     fun changeNetworkState(enabled: Boolean){
         val instrumentationContext = InstrumentationRegistry.getInstrumentation().context
