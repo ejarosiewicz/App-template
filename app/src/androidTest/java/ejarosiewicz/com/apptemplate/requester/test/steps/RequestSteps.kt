@@ -1,12 +1,29 @@
 package ejarosiewicz.com.apptemplate.requester.test.steps
 
+
 import com.mauriciotogneri.greencoffee.GreenCoffeeSteps
+import com.mauriciotogneri.greencoffee.annotations.Given
 import com.mauriciotogneri.greencoffee.annotations.Then
 import com.mauriciotogneri.greencoffee.annotations.When
+import ejarosiewicz.com.apptemplate.R
 import ejarosiewicz.com.apptemplate.requester.test.robots.basic
-import ejarosiewicz.com.requester.R
+
 
 class RequestSteps: GreenCoffeeSteps() {
+
+    @Given("Network is enabled$")
+    fun enableNetwork() {
+        basic {
+            changeNetworkState(true)
+        }
+    }
+
+    @Given("Network is disabled$")
+    fun disableNetwork() {
+        basic {
+            changeNetworkState(false)
+        }
+    }
 
     @When("^I want to make request$")
     fun makeSomeRequest() {
@@ -19,6 +36,13 @@ class RequestSteps: GreenCoffeeSteps() {
     fun verifyResults() {
         basic {
             matchText(R.id.textView, "world")
+        }
+    }
+
+    @Then("^I see no error message on the screen$")
+    fun verifyNoNetworkMessage() {
+        basic {
+            matchText(R.id.errorPrompt, "world")
         }
     }
 }
