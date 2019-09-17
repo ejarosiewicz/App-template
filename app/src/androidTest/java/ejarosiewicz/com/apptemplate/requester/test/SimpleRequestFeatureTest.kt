@@ -46,6 +46,7 @@ class SimpleRequestFeatureTest(scenarioConfig: ScenarioConfig) : GreenCoffeeTest
         activityScenario.onActivity { activity ->
             idlingResource = activity.idlingResource
             IdlingRegistry.getInstance().register(idlingResource)
+            //TestButler.setup(getApplicationContext())
         }
     }
 
@@ -56,6 +57,7 @@ class SimpleRequestFeatureTest(scenarioConfig: ScenarioConfig) : GreenCoffeeTest
 
     @After
     fun tearDown(){
+        //TestButler.teardown(getApplicationContext())
         IdlingRegistry.getInstance().unregister(idlingResource)
     }
 }

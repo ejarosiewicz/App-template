@@ -50,15 +50,16 @@ class RequesterActivity : AppCompatActivity() {
         viewModel.loadDataFromWeb()
     }
 
-    private fun onDataReceived(requesterState: RequesterState) =
+    private fun onDataReceived(requesterState: RequesterState) {
         when (requesterState) {
             is RequestSuccessful -> onRequestSuccessful(requesterState)
             is RequestFailed -> onRequestFailed()
         }
+        idlingResource.decrement()
+    }
 
     private fun onRequestSuccessful(requestSuccessful: RequestSuccessful) {
         textView.text = requestSuccessful.data
-        idlingResource.decrement()
     }
 
     private fun onRequestFailed() {

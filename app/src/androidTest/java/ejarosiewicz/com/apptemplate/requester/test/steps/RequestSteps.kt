@@ -10,14 +10,14 @@ import ejarosiewicz.com.apptemplate.requester.test.robots.basic
 
 class RequestSteps: GreenCoffeeSteps() {
 
-    @Given("Network is enabled$")
+    @Given("^Network is enabled$")
     fun enableNetwork() {
         basic {
             changeNetworkState(true)
         }
     }
 
-    @Given("Network is disabled$")
+    @Given("^Network is disabled$")
     fun disableNetwork() {
         basic {
             changeNetworkState(false)
