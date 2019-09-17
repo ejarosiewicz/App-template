@@ -38,7 +38,7 @@ class RequestSteps: GreenCoffeeSteps() {
         }
     }
 
-    @Then("^I see no error message on the screen$")
+    @Then("^I see no network message on the screen$")
     fun verifyNoNetworkMessage() {
         basic {
             matchSnackbarText("No network connection")

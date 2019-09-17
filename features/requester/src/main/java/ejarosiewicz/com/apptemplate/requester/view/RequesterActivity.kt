@@ -9,6 +9,7 @@ import androidx.test.espresso.idling.CountingIdlingResource
 import com.google.android.material.snackbar.Snackbar
 import dagger.android.AndroidInjection
 import ejarosiewicz.com.apptemplate.requester.data.RequestFailed
+import ejarosiewicz.com.apptemplate.requester.data.RequestNoNetwork
 import ejarosiewicz.com.apptemplate.requester.data.RequestSuccessful
 import ejarosiewicz.com.apptemplate.requester.data.RequesterState
 import ejarosiewicz.com.apptemplate.requester.viewmodel.RequesterViewModelImpl
@@ -54,8 +55,13 @@ class RequesterActivity : AppCompatActivity() {
         when (requesterState) {
             is RequestSuccessful -> onRequestSuccessful(requesterState)
             is RequestFailed -> onRequestFailed()
+            is RequestNoNetwork -> notifyNoNetworkConnection()
         }
         idlingResource.decrement()
+    }
+
+    private fun notifyNoNetworkConnection() {
+        Snackbar.make(container, R.string.network_error, Snackbar.LENGTH_SHORT).show()
     }
 
     private fun onRequestSuccessful(requestSuccessful: RequestSuccessful) {
@@ -63,6 +69,5 @@ class RequesterActivity : AppCompatActivity() {
     }
 
     private fun onRequestFailed() {
-        Snackbar.make(container, R.string.network_error, Snackbar.LENGTH_SHORT).show()
     }
 }

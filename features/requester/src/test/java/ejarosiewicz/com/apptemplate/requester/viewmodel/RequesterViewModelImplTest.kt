@@ -6,8 +6,10 @@ import assertk.assertThat
 import assertk.assertions.isEqualTo
 import assertk.assertions.isInstanceOf
 import com.nhaarman.mockitokotlin2.*
+import ejarosiewicz.com.android.connection.NetworkConnection
 import ejarosiewicz.com.android.logger.Logger
 import ejarosiewicz.com.apptemplate.requester.data.RequestFailed
+import ejarosiewicz.com.apptemplate.requester.data.RequestNoNetwork
 import ejarosiewicz.com.apptemplate.requester.data.RequestSuccessful
 import ejarosiewicz.com.apptemplate.requester.data.RequesterState
 import ejarosiewicz.com.apptemplate.requester.usecase.GetDataFromWebUseCase
@@ -30,12 +32,23 @@ class RequesterViewModelImplTest {
     private val mockStateObserver: Observer<RequesterState> = mock()
     private val mockGetDataFromWebUseCase: GetDataFromWebUseCase = mock()
     private val mockLogger: Logger = mock()
+    private val mockNetworkConnection: NetworkConnection = mock()
 
-    private val systemUnderTest = RequesterViewModelImpl(mockGetDataFromWebUseCase, testScheduler, mockLogger)
+    private val systemUnderTest = RequesterViewModelImpl(mockGetDataFromWebUseCase,
+        testScheduler, mockLogger, mockNetworkConnection)
 
     @Before
     fun `Set up`() {
         systemUnderTest.request.observeForever(mockStateObserver)
+    }
+
+    @Test
+    fun `Fetch no network state`() {
+        givenNoNetwork()
+
+        systemUnderTest.loadDataFromWeb()
+
+        verify(mockStateObserver).onChanged(RequestNoNetwork)
     }
 
     @Test
@@ -80,11 +93,17 @@ class RequesterViewModelImplTest {
         verify(mockStateObserver).onChanged(RequestFailed)
     }
 
+    private fun givenNoNetwork(){
+        whenever(mockNetworkConnection.isEnabled()).thenReturn(false)
+    }
+
     private fun givenErrorFromWeb() {
+        whenever(mockNetworkConnection.isEnabled()).thenReturn(true)
         whenever(mockGetDataFromWebUseCase.load()).thenReturn(Single.error(EXCEPTION))
     }
 
     private fun givenDataFromWeb() {
+        whenever(mockNetworkConnection.isEnabled()).thenReturn(true)
         whenever(mockGetDataFromWebUseCase.load()).thenReturn(Single.just(STUB_RESPONSE))
     }
 
