@@ -7,8 +7,10 @@ import androidx.test.rule.ActivityTestRule
 import com.mauriciotogneri.greencoffee.GreenCoffeeConfig
 import com.mauriciotogneri.greencoffee.GreenCoffeeTest
 import com.mauriciotogneri.greencoffee.ScenarioConfig
+import ejarosiewicz.com.apptemplate.requester.test.assets.MockResponseReader
 import ejarosiewicz.com.apptemplate.requester.test.steps.RequestSteps
 import ejarosiewicz.com.apptemplate.requester.view.RequesterActivity
+import okhttp3.mockwebserver.MockWebServer
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
@@ -25,7 +27,9 @@ class SimpleRequestFeatureTest(scenarioConfig: ScenarioConfig) : GreenCoffeeTest
     @JvmField
     var activity: ActivityTestRule<RequesterActivity> = ActivityTestRule(RequesterActivity::class.java)
 
+    private val mockWebServer = MockWebServer()
     private lateinit var idlingResource: IdlingResource
+    private lateinit var mockResponseContent: String
 
 
     companion object {
@@ -47,17 +51,21 @@ class SimpleRequestFeatureTest(scenarioConfig: ScenarioConfig) : GreenCoffeeTest
             idlingResource = activity.idlingResource
             IdlingRegistry.getInstance().register(idlingResource)
             //TestButler.setup(getApplicationContext())
+            mockResponseContent = MockResponseReader.read("some_response.json")
         }
+        mockWebServer.start()
+
     }
 
     @Test
     fun test() {
-        start(RequestSteps())
+        start(RequestSteps(mockWebServer,mockResponseContent))
     }
 
     @After
-    fun tearDown(){
+    fun tearDown() {
         //TestButler.teardown(getApplicationContext())
         IdlingRegistry.getInstance().unregister(idlingResource)
+        mockWebServer.shutdown()
     }
 }

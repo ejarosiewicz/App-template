@@ -33,12 +33,4 @@ class BasicRobot {
 
     fun matchSnackbarText(text: String) =
         onSnackbar().matchText(text)
-
-    fun changeNetworkState(enabled: Boolean){
-        val wifi = getSystemService(getApplicationContext(), WifiManager::class.java)
-        wifi?.isWifiEnabled = enabled
-        if (enabled) {
-            Thread.sleep(TimeUnit.SECONDS.toMillis(4))
-        }
-    }
 }

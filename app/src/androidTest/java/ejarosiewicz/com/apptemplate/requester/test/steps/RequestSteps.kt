@@ -6,21 +6,32 @@ import com.mauriciotogneri.greencoffee.annotations.Then
 import com.mauriciotogneri.greencoffee.annotations.When
 import ejarosiewicz.com.apptemplate.R
 import ejarosiewicz.com.apptemplate.requester.test.robots.basic
+import ejarosiewicz.com.apptemplate.requester.test.robots.network
+import okhttp3.mockwebserver.MockWebServer
 
 
-class RequestSteps: GreenCoffeeSteps() {
+class RequestSteps(private val mockWebServer: MockWebServer,
+                   private val mockResponseContent: String) : GreenCoffeeSteps() {
 
     @Given("^Network is enabled$")
     fun enableNetwork() {
-        basic {
+        network {
             changeNetworkState(true)
+            makeResponseSuccess(mockWebServer, mockResponseContent)
         }
     }
 
     @Given("^Network is disabled$")
     fun disableNetwork() {
-        basic {
+        network {
             changeNetworkState(false)
+        }
+    }
+
+    @Given("^Network has errors$")
+    fun prepareResponseSuccess() {
+        network {
+            makeResponseFail(mockWebServer)
         }
     }
 
@@ -42,6 +53,13 @@ class RequestSteps: GreenCoffeeSteps() {
     fun verifyNoNetworkMessage() {
         basic {
             matchSnackbarText("No network connection")
+        }
+    }
+
+    @Then("^I see network error message on the screen$")
+    fun verifyNetworErrorkMessage() {
+        basic {
+            matchSnackbarText("Network error")
         }
     }
 }
