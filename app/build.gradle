@@ -6,6 +6,7 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 
 apply from: "../androidconfig.gradle"
+apply from: "../flavors.gradle"
 
 android {
     defaultConfig {
@@ -41,5 +42,6 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     androidTestImplementation 'com.mauriciotogneri:greencoffee:3.5.0'
     androidTestImplementation 'androidx.test:core:1.2.0'
+    androidTestImplementation "com.squareup.okhttp3:mockwebserver:3.12.0"
 
 }

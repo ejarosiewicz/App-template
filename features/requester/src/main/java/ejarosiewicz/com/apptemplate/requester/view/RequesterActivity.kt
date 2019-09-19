@@ -6,7 +6,12 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.test.espresso.idling.CountingIdlingResource
+import com.google.android.material.snackbar.Snackbar
 import dagger.android.AndroidInjection
+import ejarosiewicz.com.apptemplate.requester.data.RequestFailed
+import ejarosiewicz.com.apptemplate.requester.data.RequestNoNetwork
+import ejarosiewicz.com.apptemplate.requester.data.RequestSuccessful
+import ejarosiewicz.com.apptemplate.requester.data.RequesterState
 import ejarosiewicz.com.apptemplate.requester.viewmodel.RequesterViewModelImpl
 import ejarosiewicz.com.requester.R
 import kotlinx.android.synthetic.main.activity_requester.*
@@ -41,13 +46,29 @@ class RequesterActivity : AppCompatActivity() {
         viewModel.request.observe(this, Observer { data -> onDataReceived(data) })
     }
 
-    private fun loadDataFromWeb(){
+    private fun loadDataFromWeb() {
         idlingResource.increment()
         viewModel.loadDataFromWeb()
     }
 
-    private fun onDataReceived(data: String) {
-        textView.text = data
+    private fun onDataReceived(requesterState: RequesterState) {
+        when (requesterState) {
+            is RequestSuccessful -> onRequestSuccessful(requesterState)
+            is RequestFailed -> onRequestFailed()
+            is RequestNoNetwork -> notifyNoNetworkConnection()
+        }
         idlingResource.decrement()
+    }
+
+    private fun notifyNoNetworkConnection() {
+        textView.setText(R.string.no_network_connection)
+    }
+
+    private fun onRequestSuccessful(requestSuccessful: RequestSuccessful) {
+        textView.text = requestSuccessful.data
+    }
+
+    private fun onRequestFailed() {
+        textView.setText(R.string.network_error)
     }
 }

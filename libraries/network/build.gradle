@@ -4,6 +4,7 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 
 apply from: "../../androidconfig.gradle"
+apply from: "../../flavors.gradle"
 
 dependencies {
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
