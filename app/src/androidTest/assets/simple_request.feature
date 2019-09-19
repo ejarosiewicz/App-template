@@ -1,9 +1,19 @@
 Feature: Some simple request
 
-  Scenario: Do request on click
-#    Given Network is enabled
-#    When I want to make request
-#    Then I see the result on the screen
+  Scenario: See header after request
+    Given Network is enabled
+    When I want to make request
+    Then I see the header at the top
+
+  Scenario: See content after request
+    Given Network is enabled
+    When I want to make request
+    Then I see the content
+
+  Scenario: See text after request
+    Given Network is enabled
+    When I want to make request
+    Then I see text
 
   Scenario: Show network error message
     Given Network has errors

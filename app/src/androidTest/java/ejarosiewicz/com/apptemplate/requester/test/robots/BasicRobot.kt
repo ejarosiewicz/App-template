@@ -23,4 +23,5 @@ class BasicRobot {
 
     fun matchText(resId: Int, text: String) =
         onView(resId).matchText(text)
+
 }
