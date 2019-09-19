@@ -1,3 +1,15 @@
-{
-  "hello": "world"
-}
+[
+  {
+    "big_caption": "You Stink!"
+  },
+  {
+    "text": "Hello",
+    "content": "Lorem Ipsum",
+    "image": ""
+  },
+  {
+    "header": "YO!",
+    "content": "Lorem Ipsum",
+    "header_image": ""
+  }
+]
