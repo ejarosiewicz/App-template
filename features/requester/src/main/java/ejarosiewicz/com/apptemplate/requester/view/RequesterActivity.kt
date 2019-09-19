@@ -61,7 +61,7 @@ class RequesterActivity : AppCompatActivity() {
     }
 
     private fun notifyNoNetworkConnection() {
-        Snackbar.make(container, R.string.network_error, Snackbar.LENGTH_SHORT).show()
+        textView.setText(R.string.no_network_connection)
     }
 
     private fun onRequestSuccessful(requestSuccessful: RequestSuccessful) {
@@ -69,5 +69,6 @@ class RequesterActivity : AppCompatActivity() {
     }
 
     private fun onRequestFailed() {
+        textView.setText(R.string.network_error)
     }
 }

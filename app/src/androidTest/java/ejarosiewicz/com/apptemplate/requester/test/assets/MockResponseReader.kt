@@ -1,16 +1,14 @@
 package ejarosiewicz.com.apptemplate.requester.test.assets
 
-import android.content.Context
-import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStream
 
 object MockResponseReader {
 
-    fun read(assetPath: String): String {
+    fun read(fileName: String): String {
         try {
             val inputStream = javaClass.classLoader
-                ?.getResourceAsStream("assets/responses/somerequest/$assetPath")
+                ?.getResourceAsStream(getResponsePath(fileName))
             return if (inputStream != null) {
                 inputStreamToString(inputStream)
             } else {
@@ -20,6 +18,9 @@ object MockResponseReader {
             throw RuntimeException(e)
         }
     }
+
+    private fun getResponsePath(fileName: String)=
+        "assets/responses/somerequest/$fileName"
 
     private fun inputStreamToString(inputStream: InputStream): String {
         val stringBuilder = StringBuilder()

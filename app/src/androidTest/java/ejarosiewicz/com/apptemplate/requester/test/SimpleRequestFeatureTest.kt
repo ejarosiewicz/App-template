@@ -50,21 +50,18 @@ class SimpleRequestFeatureTest(scenarioConfig: ScenarioConfig) : GreenCoffeeTest
         activityScenario.onActivity { activity ->
             idlingResource = activity.idlingResource
             IdlingRegistry.getInstance().register(idlingResource)
-            //TestButler.setup(getApplicationContext())
             mockResponseContent = MockResponseReader.read("some_response.json")
         }
-        mockWebServer.start()
-
+        mockWebServer.start(8000)
     }
 
     @Test
     fun test() {
-        start(RequestSteps(mockWebServer,mockResponseContent))
+        start(RequestSteps(mockWebServer, mockResponseContent))
     }
 
     @After
     fun tearDown() {
-        //TestButler.teardown(getApplicationContext())
         IdlingRegistry.getInstance().unregister(idlingResource)
         mockWebServer.shutdown()
     }

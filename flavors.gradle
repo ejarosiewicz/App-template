@@ -1,0 +1,14 @@
+android{
+
+    flavorDimensions "backend"
+
+    productFlavors {
+        production {
+            dimension "backend"
+
+        }
+        mock {
+            dimension "backend"
+        }
+    }
+}

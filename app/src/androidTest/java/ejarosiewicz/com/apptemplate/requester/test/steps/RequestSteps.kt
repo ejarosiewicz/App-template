@@ -29,8 +29,9 @@ class RequestSteps(private val mockWebServer: MockWebServer,
     }
 
     @Given("^Network has errors$")
-    fun prepareResponseSuccess() {
+    fun prepareResponseFail() {
         network {
+            changeNetworkState(true)
             makeResponseFail(mockWebServer)
         }
     }
@@ -52,14 +53,14 @@ class RequestSteps(private val mockWebServer: MockWebServer,
     @Then("^I see no network message on the screen$")
     fun verifyNoNetworkMessage() {
         basic {
-            matchSnackbarText("No network connection")
+            matchText(R.id.textView,"No network connection")
         }
     }
 
     @Then("^I see network error message on the screen$")
     fun verifyNetworErrorkMessage() {
         basic {
-            matchSnackbarText("Network error")
+            matchText(R.id.textView,"Network error")
         }
     }
 }
