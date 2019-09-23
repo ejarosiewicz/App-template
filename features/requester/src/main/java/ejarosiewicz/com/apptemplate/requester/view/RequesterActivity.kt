@@ -65,7 +65,7 @@ class RequesterActivity : AppCompatActivity() {
     }
 
     private fun onRequestSuccessful(requestSuccessful: RequestSuccessful) {
-        textView.text = requestSuccessful.data
+        //textView.text = requestSuccessful.data
     }
 
     private fun onRequestFailed() {

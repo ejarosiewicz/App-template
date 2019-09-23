@@ -45,7 +45,7 @@ class RequesterViewModelImpl @Inject constructor(
     }
 
     private fun onLoadDataSuccess(data: List<DataToShow>) {
-       // request.value = RequestSuccessful(data.text)
+        request.value = RequestSuccessful(data)
     }
 
     private fun onReceiveError(error: Throwable) {

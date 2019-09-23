@@ -71,7 +71,7 @@ class RequesterViewModelImplTest {
         stateCaptor.apply {
             assertThat(firstValue).isInstanceOf(RequestSuccessful::class)
             val gatheredData = (firstValue as RequestSuccessful).data
-            assertThat(gatheredData).isEqualTo(STUB_RESPONSE_TEXT)
+            assertThat(gatheredData).isEqualTo(STUB_RESPONSE)
         }
     }
 
@@ -104,15 +104,13 @@ class RequesterViewModelImplTest {
 
     private fun givenDataFromWeb() {
         whenever(mockNetworkConnection.isEnabled()).thenReturn(true)
-  //      whenever(mockGetDataFromWebUseCase.load()).thenReturn(Single.just(STUB_RESPONSE))
+        whenever(mockGetDataFromWebUseCase.load()).thenReturn(Single.just(STUB_RESPONSE))
     }
 
     companion object {
-
-        private const val STUB_RESPONSE_TEXT = "Hello"
         private const val EXCEPTION_MESSAGE = "You smell"
+        private val STUB_RESPONSE = listOf(DataToShow(false, "", ""))
 
-     //   private val STUB_RESPONSE = DataToShow(STUB_RESPONSE_TEXT)
         private val EXCEPTION = IllegalAccessException(EXCEPTION_MESSAGE)
     }
 }
