@@ -1,3 +1,3 @@
 package ejarosiewicz.com.apptemplate.requester.usecase.data
 
-interface DataToShow
+data class TextOnly(val text: String): DataToShow

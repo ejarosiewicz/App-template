@@ -11,12 +11,13 @@ import io.reactivex.Single
 import org.junit.Test
 
 class GetDataFromWebUseCaseImplTest {
+    private val mockDataToShow: DataToShow = mock()
 
     private val mockRequestProvider: RequestProvider = mock {
         on { someRequest() } doReturn Single.just(listOf(STUB_SOME_DATA))
     }
     private val mockConverter: SomeDataToDataToShowConverter = mock {
-        on { convert(STUB_SOME_DATA) } doReturn STUB_DATA_TO_SHOW
+        on { convert(STUB_SOME_DATA) } doReturn mockDataToShow
     }
 
     private val systemUnderTest = GetDataFromWebUseCaseImpl(mockRequestProvider, mockConverter)
@@ -38,6 +39,5 @@ class GetDataFromWebUseCaseImplTest {
 
     companion object {
         private val STUB_SOME_DATA = SomeData(false, "yellow", "http://hotporn.com/ass.png")
-        private val STUB_DATA_TO_SHOW = DataToShow(true, "wellow", "http://xx.com/nicemilf.jpg")
     }
 }
