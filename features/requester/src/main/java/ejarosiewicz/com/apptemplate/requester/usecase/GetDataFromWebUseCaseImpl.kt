@@ -8,10 +8,14 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class GetDataFromWebUseCaseImpl @Inject constructor(private val requestProvider: RequestProvider,
-                                                    private val converter: SomeDataToDataToShowConverter) :
+class GetDataFromWebUseCaseImpl @Inject constructor(
+    private val requestProvider: RequestProvider,
+    private val converter: SomeDataToDataToShowConverter
+) :
     GetDataFromWebUseCase {
 
-    override fun load(): Single<DataToShow> = requestProvider.someRequest()
-        .map { someData -> converter.convert(someData)  }
+    override fun load(): Single<List<DataToShow>> = requestProvider.someRequest()
+        .map { someDataList ->
+            someDataList.map { data -> converter.convert(data) }
+        }
 }

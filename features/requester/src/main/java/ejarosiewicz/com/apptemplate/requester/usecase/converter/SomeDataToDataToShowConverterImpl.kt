@@ -9,6 +9,8 @@ import javax.inject.Singleton
 class SomeDataToDataToShowConverterImpl @Inject constructor(): SomeDataToDataToShowConverter {
 
     override fun convert(someData: SomeData)= DataToShow(
-        text = someData.hello
+        isHeader = someData.isHeader,
+        text = someData.text,
+        image = someData.image
     )
 }

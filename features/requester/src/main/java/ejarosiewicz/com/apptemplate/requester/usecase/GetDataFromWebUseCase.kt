@@ -5,5 +5,5 @@ import io.reactivex.Single
 
 interface GetDataFromWebUseCase {
 
-    fun load(): Single<DataToShow>
+    fun load(): Single<List<DataToShow>>
 }

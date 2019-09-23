@@ -13,7 +13,7 @@ import org.junit.Test
 class GetDataFromWebUseCaseImplTest {
 
     private val mockRequestProvider: RequestProvider = mock {
-        on { someRequest() } doReturn Single.just(STUB_SOME_DATA)
+        on { someRequest() } doReturn Single.just(listOf(STUB_SOME_DATA))
     }
     private val mockConverter: SomeDataToDataToShowConverter = mock {
         on { convert(STUB_SOME_DATA) } doReturn STUB_DATA_TO_SHOW
@@ -37,7 +37,7 @@ class GetDataFromWebUseCaseImplTest {
     }
 
     companion object {
-        private val STUB_SOME_DATA = SomeData("yellow")
-        private val STUB_DATA_TO_SHOW = DataToShow("wellow")
+        private val STUB_SOME_DATA = SomeData(false, "yellow", "http://hotporn.com/ass.png")
+        private val STUB_DATA_TO_SHOW = DataToShow(true, "wellow", "http://xx.com/nicemilf.jpg")
     }
 }

@@ -1,15 +1,18 @@
 [
   {
-    "big_caption": "You Stink!"
+    "text": "You Stink!",
+    "isHeader": "false"
   },
   {
     "text": "Hello",
     "content": "Lorem Ipsum",
-    "image": ""
+    "image": "",
+    "isHeader": "true"
   },
   {
-    "header": "YO!",
+    "text": "YO!",
     "content": "Lorem Ipsum",
-    "header_image": ""
+    "image": "",
+    "isHeader": "false"
   }
 ]

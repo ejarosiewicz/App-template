@@ -44,8 +44,8 @@ class RequesterViewModelImpl @Inject constructor(
         request.value = RequestNoNetwork
     }
 
-    private fun onLoadDataSuccess(data: DataToShow) {
-        request.value = RequestSuccessful(data.text)
+    private fun onLoadDataSuccess(data: List<DataToShow>) {
+       // request.value = RequestSuccessful(data.text)
     }
 
     private fun onReceiveError(error: Throwable) {

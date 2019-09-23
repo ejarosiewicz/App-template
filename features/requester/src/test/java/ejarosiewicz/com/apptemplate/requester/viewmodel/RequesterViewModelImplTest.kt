@@ -104,7 +104,7 @@ class RequesterViewModelImplTest {
 
     private fun givenDataFromWeb() {
         whenever(mockNetworkConnection.isEnabled()).thenReturn(true)
-        whenever(mockGetDataFromWebUseCase.load()).thenReturn(Single.just(STUB_RESPONSE))
+  //      whenever(mockGetDataFromWebUseCase.load()).thenReturn(Single.just(STUB_RESPONSE))
     }
 
     companion object {
@@ -112,7 +112,7 @@ class RequesterViewModelImplTest {
         private const val STUB_RESPONSE_TEXT = "Hello"
         private const val EXCEPTION_MESSAGE = "You smell"
 
-        private val STUB_RESPONSE = DataToShow(STUB_RESPONSE_TEXT)
+     //   private val STUB_RESPONSE = DataToShow(STUB_RESPONSE_TEXT)
         private val EXCEPTION = IllegalAccessException(EXCEPTION_MESSAGE)
     }
 }
