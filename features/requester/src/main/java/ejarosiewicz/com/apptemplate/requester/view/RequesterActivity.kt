@@ -7,10 +7,12 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.test.espresso.idling.CountingIdlingResource
 import dagger.android.AndroidInjection
+import ejarosiewicz.com.android.imageloader.ImageLoader
 import ejarosiewicz.com.apptemplate.requester.data.RequestFailed
 import ejarosiewicz.com.apptemplate.requester.data.RequestNoNetwork
 import ejarosiewicz.com.apptemplate.requester.data.RequestSuccessful
 import ejarosiewicz.com.apptemplate.requester.data.RequesterState
+import ejarosiewicz.com.apptemplate.requester.view.adapter.RequestAdapter
 import ejarosiewicz.com.apptemplate.requester.viewmodel.RequesterViewModelImpl
 import ejarosiewicz.com.requester.R
 import kotlinx.android.synthetic.main.activity_requester.*
@@ -21,16 +23,26 @@ class RequesterActivity : AppCompatActivity() {
 
     @Inject
     lateinit var viewModeFactory: ViewModelProvider.Factory
+    @Inject
+    lateinit var imageLoader: ImageLoader
 
     val idlingResource = CountingIdlingResource(this::class.toString())
 
     private lateinit var viewModel: RequesterViewModelImpl
+    private lateinit var requestAdapter: RequestAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         AndroidInjection.inject(this)
         setContentView(R.layout.activity_requester)
         setupViewModel()
+        setupLayout()
+
+    }
+
+    private fun setupLayout() {
+        requestAdapter = RequestAdapter(this, imageLoader)
+        recycler.adapter = requestAdapter
         textView.setOnClickListener { loadDataFromWeb() }
     }
 
@@ -64,7 +76,8 @@ class RequesterActivity : AppCompatActivity() {
     }
 
     private fun onRequestSuccessful(requestSuccessful: RequestSuccessful) {
-        //textView.text = requestSuccessful.data
+        requestAdapter.items = requestSuccessful.data
+        requestAdapter.notifyDataSetChanged()
     }
 
     private fun onRequestFailed() {
