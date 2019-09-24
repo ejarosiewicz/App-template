@@ -18,6 +18,8 @@ dependencies {
     implementation 'com.android.support:design:28.0.0'
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
+    implementation 'com.hannesdorfmann:adapterdelegates4-kotlin-dsl:4.2.0'
+    implementation 'com.hannesdorfmann:adapterdelegates4-kotlin-dsl-layoutcontainer:4.2.0'
 
     implementation "androidx.test.espresso:espresso-idling-resource:$idlingResourceVersion"
 }

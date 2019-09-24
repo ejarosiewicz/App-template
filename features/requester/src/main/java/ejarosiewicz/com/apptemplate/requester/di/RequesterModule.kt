@@ -18,4 +18,5 @@ abstract class RequesterModule {
 
     @ContributesAndroidInjector
     abstract fun bindsRequesterActivity(): RequesterActivity
+
 }
