@@ -6,7 +6,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.test.espresso.idling.CountingIdlingResource
-import com.google.android.material.snackbar.Snackbar
 import dagger.android.AndroidInjection
 import ejarosiewicz.com.apptemplate.requester.data.RequestFailed
 import ejarosiewicz.com.apptemplate.requester.data.RequestNoNetwork

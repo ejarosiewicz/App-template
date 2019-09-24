@@ -5,6 +5,8 @@ import dagger.Binds
 import dagger.Module
 import ejarosiewicz.com.android.connection.AndroidNetworkConnection
 import ejarosiewicz.com.android.connection.NetworkConnection
+import ejarosiewicz.com.android.imageloader.GlideImageLoader
+import ejarosiewicz.com.android.imageloader.ImageLoader
 import ejarosiewicz.com.android.logger.AndroidLogger
 import ejarosiewicz.com.android.logger.Logger
 import ejarosiewicz.com.android.viewmodelfactory.GlobalViewModelFactory
@@ -24,4 +26,8 @@ abstract class AndroidElementsModule {
     @Binds
     @Singleton
     abstract fun bindsNetworkConnection(networkConnection: AndroidNetworkConnection): NetworkConnection
+
+    @Binds
+    @Singleton
+    abstract fun bindsImageLoader(imageLoader: GlideImageLoader): ImageLoader
 }

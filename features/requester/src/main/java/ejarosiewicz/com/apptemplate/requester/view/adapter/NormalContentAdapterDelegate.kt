@@ -8,12 +8,14 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.hannesdorfmann.adapterdelegates4.AdapterDelegate
+import ejarosiewicz.com.android.imageloader.ImageLoader
 import ejarosiewicz.com.apptemplate.requester.usecase.data.DataToShow
 import ejarosiewicz.com.apptemplate.requester.usecase.data.Header
 import ejarosiewicz.com.apptemplate.requester.usecase.data.NormalContent
 import ejarosiewicz.com.requester.R
 
-class NormalContentAdapterDelegate(private val context: Context) : AdapterDelegate<List<DataToShow>>() {
+class NormalContentAdapterDelegate(private val context: Context,
+                                   private val imageLoader: ImageLoader) : AdapterDelegate<List<DataToShow>>() {
 
     override fun onCreateViewHolder(parent: ViewGroup): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(context)
@@ -32,10 +34,10 @@ class NormalContentAdapterDelegate(private val context: Context) : AdapterDelega
     ) {
         val normalContentToBind = items[position] as Header
         (holder as NormalContentViewHolder).text.text = normalContentToBind.text
-        //TODO bind image
+        imageLoader.load(normalContentToBind.image, holder.image)
     }
 
-    class NormalContentViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
+    class NormalContentViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val text: TextView = view.findViewById(R.id.text)
         val image: ImageView = view.findViewById(R.id.image)
     }
