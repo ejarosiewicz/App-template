@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.test.espresso.idling.CountingIdlingResource
 import dagger.android.AndroidInjection
 import ejarosiewicz.com.android.imageloader.ImageLoader
@@ -41,6 +42,7 @@ class RequesterActivity : AppCompatActivity() {
     }
 
     private fun setupLayout() {
+        recycler.layoutManager = LinearLayoutManager(this)
         requestAdapter = RequestAdapter(this, imageLoader)
         recycler.adapter = requestAdapter
         textView.setOnClickListener { loadDataFromWeb() }
@@ -77,6 +79,7 @@ class RequesterActivity : AppCompatActivity() {
 
     private fun onRequestSuccessful(requestSuccessful: RequestSuccessful) {
         requestAdapter.items = requestSuccessful.data
+        recycler.adapter = requestAdapter
         requestAdapter.notifyDataSetChanged()
     }
 

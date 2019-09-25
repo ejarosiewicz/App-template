@@ -5,6 +5,11 @@
                                                    android:layout_width="match_parent"
                                                    android:layout_height="match_parent">
 
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
     <TextView
             android:id="@+id/textView"
             android:text="Hello, I'm doing nothing ;)"
@@ -18,10 +23,6 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
