@@ -32,7 +32,7 @@ class NormalContentAdapterDelegate(private val context: Context,
         holder: RecyclerView.ViewHolder,
         payloads: MutableList<Any>
     ) {
-        val normalContentToBind = items[position] as Header
+        val normalContentToBind = items[position] as NormalContent
         (holder as NormalContentViewHolder).text.text = normalContentToBind.text
         imageLoader.load(normalContentToBind.image, holder.image)
     }

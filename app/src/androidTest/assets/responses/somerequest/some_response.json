@@ -6,13 +6,13 @@
   {
     "text": "Hello",
     "content": "Lorem Ipsum",
-    "image": "",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/b/b4/JPEG_example_JPG_RIP_100.jpg",
     "isHeader": "true"
   },
   {
     "text": "YO!",
     "content": "Lorem Ipsum",
-    "image": "",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/JPEG_ZigZag.svg/1024px-JPEG_ZigZag.svg.png",
     "isHeader": "false"
   }
 ]

@@ -1,6 +1,8 @@
 package ejarosiewicz.com.apptemplate.requester.view
 
+import android.opengl.Visibility
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -42,6 +44,8 @@ class RequesterActivity : AppCompatActivity() {
     }
 
     private fun setupLayout() {
+        textView.visibility = View.VISIBLE
+        recycler.visibility = View.GONE
         recycler.layoutManager = LinearLayoutManager(this)
         requestAdapter = RequestAdapter(this, imageLoader)
         recycler.adapter = requestAdapter
@@ -78,12 +82,16 @@ class RequesterActivity : AppCompatActivity() {
     }
 
     private fun onRequestSuccessful(requestSuccessful: RequestSuccessful) {
+        textView.visibility = View.GONE
+        recycler.visibility = View.VISIBLE
         requestAdapter.items = requestSuccessful.data
         recycler.adapter = requestAdapter
         requestAdapter.notifyDataSetChanged()
     }
 
     private fun onRequestFailed() {
+        textView.visibility = View.VISIBLE
+        recycler.visibility = View.GONE
         textView.setText(R.string.network_error)
     }
 }
