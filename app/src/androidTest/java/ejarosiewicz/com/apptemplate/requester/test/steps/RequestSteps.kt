@@ -10,14 +10,12 @@ import ejarosiewicz.com.apptemplate.requester.test.robots.network
 import okhttp3.mockwebserver.MockWebServer
 
 
-class RequestSteps(private val mockWebServer: MockWebServer,
-                   private val mockResponseContent: String) : GreenCoffeeSteps() {
+class RequestSteps : GreenCoffeeSteps() {
 
     @Given("^Network is enabled$")
     fun enableNetwork() {
         network {
             changeNetworkState(true)
-            makeResponseSuccess(mockWebServer, mockResponseContent)
         }
     }
 
@@ -32,7 +30,6 @@ class RequestSteps(private val mockWebServer: MockWebServer,
     fun prepareResponseFail() {
         network {
             changeNetworkState(true)
-            makeResponseFail(mockWebServer)
         }
     }
 
@@ -43,10 +40,24 @@ class RequestSteps(private val mockWebServer: MockWebServer,
         }
     }
 
-    @Then("^I see the result on the screen$")
-    fun verifyResults() {
+    @Then("^I see header on the screen$")
+    fun verifyHeader() {
         basic {
-            matchText(R.id.textView, "world")
+            isDisplayed(R.id.header)
+        }
+    }
+
+    @Then("^I see content on the screen$")
+    fun verifyContent() {
+        basic {
+            isDisplayed(R.id.content)
+        }
+    }
+
+    @Then("^I see text only container on the screen$")
+    fun verifyTextOnly() {
+        basic {
+            isDisplayed(R.id.textcontainer)
         }
     }
 

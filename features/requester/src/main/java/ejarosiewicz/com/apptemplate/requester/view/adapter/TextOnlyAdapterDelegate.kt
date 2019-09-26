@@ -33,7 +33,7 @@ class TextOnlyAdapterDelegate(private val context: Context) : AdapterDelegate<Li
     }
 
     class TextOnlyViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
-        val text: TextView = view.findViewById(R.id.text)
+        val text: TextView = view.findViewById(R.id.textcontainer)
     }
 
 }
