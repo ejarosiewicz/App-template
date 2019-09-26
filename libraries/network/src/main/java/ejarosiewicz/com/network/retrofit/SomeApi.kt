@@ -8,7 +8,7 @@ import retrofit2.http.GET
 interface SomeApi {
 
     @GET(NetworkConstants.SOME_REQUEST)
-    fun someRequest(): Single<SomeData>
+    fun someRequest(): Single<List<SomeData>>
 
     @GET(NetworkConstants.ANOTHER_REQUEST)
     fun anotherRequest(): Single<String>

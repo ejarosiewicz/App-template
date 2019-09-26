@@ -10,7 +10,6 @@ import com.mauriciotogneri.greencoffee.ScenarioConfig
 import ejarosiewicz.com.apptemplate.requester.test.assets.MockResponseReader
 import ejarosiewicz.com.apptemplate.requester.test.steps.RequestSteps
 import ejarosiewicz.com.apptemplate.requester.view.RequesterActivity
-import okhttp3.mockwebserver.MockWebServer
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
@@ -27,7 +26,6 @@ class SimpleRequestFeatureTest(scenarioConfig: ScenarioConfig) : GreenCoffeeTest
     @JvmField
     var activity: ActivityTestRule<RequesterActivity> = ActivityTestRule(RequesterActivity::class.java)
 
-    private val mockWebServer = MockWebServer()
     private lateinit var idlingResource: IdlingResource
     private lateinit var mockResponseContent: String
 
@@ -52,17 +50,15 @@ class SimpleRequestFeatureTest(scenarioConfig: ScenarioConfig) : GreenCoffeeTest
             IdlingRegistry.getInstance().register(idlingResource)
             mockResponseContent = MockResponseReader.read("some_response.json")
         }
-        mockWebServer.start(8000)
     }
 
     @Test
     fun test() {
-        start(RequestSteps(mockWebServer, mockResponseContent))
+        start(RequestSteps())
     }
 
     @After
     fun tearDown() {
         IdlingRegistry.getInstance().unregister(idlingResource)
-        mockWebServer.shutdown()
     }
 }

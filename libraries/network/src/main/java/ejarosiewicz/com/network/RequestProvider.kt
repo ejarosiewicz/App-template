@@ -5,7 +5,7 @@ import io.reactivex.Single
 
 interface RequestProvider {
 
-    fun someRequest(): Single<SomeData>
+    fun someRequest(): Single<List<SomeData>>
 
     fun anotherRequest(): Single<String>
 }

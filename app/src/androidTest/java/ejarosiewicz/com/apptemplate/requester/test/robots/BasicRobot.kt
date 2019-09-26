@@ -23,4 +23,11 @@ class BasicRobot {
 
     fun matchText(resId: Int, text: String) =
         onView(resId).matchText(text)
+
+    fun ViewInteraction.isDisplayed() =
+        check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+
+    fun isDisplayed(resId: Int) =
+        onView(resId).isDisplayed()
+
 }

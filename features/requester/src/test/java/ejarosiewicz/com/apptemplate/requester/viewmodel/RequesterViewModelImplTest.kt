@@ -29,10 +29,13 @@ class RequesterViewModelImplTest {
 
     private val testScheduler: Scheduler = TestScheduler()
 
+    private val mockDataToShow: DataToShow = mock()
+    private val stubResponse = listOf(mockDataToShow)
     private val mockStateObserver: Observer<RequesterState> = mock()
     private val mockGetDataFromWebUseCase: GetDataFromWebUseCase = mock()
     private val mockLogger: Logger = mock()
     private val mockNetworkConnection: NetworkConnection = mock()
+
 
     private val systemUnderTest = RequesterViewModelImpl(mockGetDataFromWebUseCase,
         testScheduler, mockLogger, mockNetworkConnection)
@@ -71,7 +74,7 @@ class RequesterViewModelImplTest {
         stateCaptor.apply {
             assertThat(firstValue).isInstanceOf(RequestSuccessful::class)
             val gatheredData = (firstValue as RequestSuccessful).data
-            assertThat(gatheredData).isEqualTo(STUB_RESPONSE_TEXT)
+            assertThat(gatheredData).isEqualTo(stubResponse)
         }
     }
 
@@ -104,15 +107,12 @@ class RequesterViewModelImplTest {
 
     private fun givenDataFromWeb() {
         whenever(mockNetworkConnection.isEnabled()).thenReturn(true)
-        whenever(mockGetDataFromWebUseCase.load()).thenReturn(Single.just(STUB_RESPONSE))
+        whenever(mockGetDataFromWebUseCase.load()).thenReturn(Single.just(stubResponse))
     }
 
     companion object {
-
-        private const val STUB_RESPONSE_TEXT = "Hello"
         private const val EXCEPTION_MESSAGE = "You smell"
 
-        private val STUB_RESPONSE = DataToShow(STUB_RESPONSE_TEXT)
         private val EXCEPTION = IllegalAccessException(EXCEPTION_MESSAGE)
     }
 }
