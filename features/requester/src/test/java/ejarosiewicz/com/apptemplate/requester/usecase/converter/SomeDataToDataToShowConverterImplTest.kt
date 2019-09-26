@@ -38,7 +38,7 @@ class SomeDataToDataToShowConverterImplTest{
 
     @Test
     fun `Convert some data with text and image to basic data object`(){
-        val givenData = generateSomeData(false)
+        val givenData = generateSomeData(false, STUB_IMAGE)
 
         val expectedDataToShow = systemUnderTest.convert(givenData)
 
