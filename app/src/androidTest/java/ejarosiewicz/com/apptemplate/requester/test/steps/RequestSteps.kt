@@ -7,7 +7,6 @@ import com.mauriciotogneri.greencoffee.annotations.When
 import ejarosiewicz.com.apptemplate.R
 import ejarosiewicz.com.apptemplate.requester.test.robots.basic
 import ejarosiewicz.com.apptemplate.requester.test.robots.network
-import okhttp3.mockwebserver.MockWebServer
 
 
 class RequestSteps : GreenCoffeeSteps() {

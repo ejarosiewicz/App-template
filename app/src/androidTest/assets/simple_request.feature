@@ -11,8 +11,8 @@ Feature: Some simple request
 #    Given Network has errors
 #    When I want to make request
 #    Then I see network error message on the screen
-#
-#  Scenario: Show no network message
-#    Given Network is disabled
-#    When I want to make request
-#    Then I see no network message on the screen
+
+  Scenario: Show no network message
+    Given Network is disabled
+    When I want to make request
+    Then I see no network message on the screen

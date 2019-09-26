@@ -10,7 +10,6 @@ import com.mauriciotogneri.greencoffee.ScenarioConfig
 import ejarosiewicz.com.apptemplate.requester.test.assets.MockResponseReader
 import ejarosiewicz.com.apptemplate.requester.test.steps.RequestSteps
 import ejarosiewicz.com.apptemplate.requester.view.RequesterActivity
-import okhttp3.mockwebserver.MockWebServer
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
