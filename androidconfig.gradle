@@ -1,11 +1,11 @@
 android {
-    compileSdkVersion 28
+    compileSdkVersion globalCompileSdkVersion
 
     defaultConfig {
-        minSdkVersion 23
-        targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion globalMinSdkVersion
+        targetSdkVersion globalTargetSdkVersion
+        versionCode globalVersionCode
+        versionName globalVersionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
