@@ -1,6 +1,5 @@
 package ejarosiewicz.com.apptemplate.requester.view
 
-import android.opengl.Visibility
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -11,10 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.test.espresso.idling.CountingIdlingResource
 import dagger.android.AndroidInjection
 import ejarosiewicz.com.android.imageloader.ImageLoader
-import ejarosiewicz.com.apptemplate.requester.data.RequestFailed
-import ejarosiewicz.com.apptemplate.requester.data.RequestNoNetwork
-import ejarosiewicz.com.apptemplate.requester.data.RequestSuccessful
-import ejarosiewicz.com.apptemplate.requester.data.RequesterState
+import ejarosiewicz.com.apptemplate.requester.data.*
 import ejarosiewicz.com.apptemplate.requester.view.adapter.RequestAdapter
 import ejarosiewicz.com.apptemplate.requester.viewmodel.RequesterViewModelImpl
 import ejarosiewicz.com.requester.R
@@ -40,16 +36,13 @@ class RequesterActivity : AppCompatActivity() {
         setContentView(R.layout.activity_requester)
         setupViewModel()
         setupLayout()
-
+        loadDataFromWeb()
     }
 
     private fun setupLayout() {
-        textView.visibility = View.VISIBLE
-        recycler.visibility = View.GONE
         recycler.layoutManager = LinearLayoutManager(this)
         requestAdapter = RequestAdapter(this, imageLoader)
         recycler.adapter = requestAdapter
-        textView.setOnClickListener { loadDataFromWeb() }
     }
 
     override fun onDestroy() {
@@ -70,28 +63,46 @@ class RequesterActivity : AppCompatActivity() {
 
     private fun onDataReceived(requesterState: RequesterState) {
         when (requesterState) {
+            is RequestLoading -> showLoadingSpinner()
+            is RequestNoNetwork -> notifyNoNetworkConnection()
             is RequestSuccessful -> onRequestSuccessful(requesterState)
             is RequestFailed -> onRequestFailed()
-            is RequestNoNetwork -> notifyNoNetworkConnection()
         }
         idlingResource.decrement()
     }
 
     private fun notifyNoNetworkConnection() {
-        textView.setText(R.string.no_network_connection)
+        showErrorPrompt()
+        errorPrompt.setText(R.string.no_network_connection)
     }
 
     private fun onRequestSuccessful(requestSuccessful: RequestSuccessful) {
-        textView.visibility = View.GONE
-        recycler.visibility = View.VISIBLE
+        showRecycler()
         requestAdapter.items = requestSuccessful.data
         recycler.adapter = requestAdapter
         requestAdapter.notifyDataSetChanged()
     }
 
     private fun onRequestFailed() {
-        textView.visibility = View.VISIBLE
+        showErrorPrompt()
+        errorPrompt.setText(R.string.network_error)
+    }
+
+    private fun showRecycler(){
+        loadingSpinner.visibility = View.GONE
+        errorPrompt.visibility = View.GONE
+        recycler.visibility = View.VISIBLE
+    }
+
+    private fun showLoadingSpinner() {
+        loadingSpinner.visibility = View.VISIBLE
+        errorPrompt.visibility = View.GONE
         recycler.visibility = View.GONE
-        textView.setText(R.string.network_error)
+    }
+
+    private fun showErrorPrompt(){
+        loadingSpinner.visibility = View.GONE
+        errorPrompt.visibility = View.VISIBLE
+        recycler.visibility = View.GONE
     }
 }
