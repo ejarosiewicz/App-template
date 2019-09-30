@@ -34,7 +34,7 @@ dependencies {
     kapt "com.google.dagger:dagger-android-processor:$daggerVersion"
 
     testImplementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
-    testImplementation 'junit:junit:4.12'
+    testImplementation "junit:junit:$junit4Version"
     testImplementation "android.arch.core:core-testing:$archCoreTestingVersion"
     testImplementation "org.mockito:mockito-core:$mockitoVersion"
     testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockitoKotlinVersion"
