@@ -1,6 +1,5 @@
 package ejarosiewicz.com.apptemplate.requester.view
 
-import android.opengl.Visibility
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -16,11 +15,10 @@ import ejarosiewicz.com.apptemplate.requester.data.RequestNoNetwork
 import ejarosiewicz.com.apptemplate.requester.data.RequestSuccessful
 import ejarosiewicz.com.apptemplate.requester.data.RequesterState
 import ejarosiewicz.com.apptemplate.requester.view.adapter.RequestAdapter
-import ejarosiewicz.com.apptemplate.requester.viewmodel.RequesterViewModelImpl
+import ejarosiewicz.com.apptemplate.requester.viewmodel.RequesterViewModel
 import ejarosiewicz.com.requester.R
 import kotlinx.android.synthetic.main.activity_requester.*
 import javax.inject.Inject
-
 
 class RequesterActivity : AppCompatActivity() {
 
@@ -31,7 +29,7 @@ class RequesterActivity : AppCompatActivity() {
 
     val idlingResource = CountingIdlingResource(this::class.toString())
 
-    private lateinit var viewModel: RequesterViewModelImpl
+    private lateinit var viewModel: RequesterViewModel
     private lateinit var requestAdapter: RequestAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,7 +57,7 @@ class RequesterActivity : AppCompatActivity() {
 
     private fun setupViewModel() {
         viewModel = ViewModelProviders.of(this, viewModeFactory)
-            .get(RequesterViewModelImpl::class.java)
+            .get(RequesterViewModel::class.java)
         viewModel.request.observe(this, Observer { data -> onDataReceived(data) })
     }
 
