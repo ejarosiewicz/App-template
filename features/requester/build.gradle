@@ -13,13 +13,12 @@ dependencies {
     implementation project(':libraries:network')
     implementation project(':libraries:async')
 
-    implementation 'com.android.support:appcompat-v7:28.0.0'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
-    implementation 'com.android.support:design:28.0.0'
+    implementation "com.android.support:appcompat-v7:$androidSupportVersion"
+    implementation "com.android.support.constraint:constraint-layout:$constraintLayoutVersion"
+    implementation "com.android.support:design:$androidSupportVersion"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
-    implementation 'com.hannesdorfmann:adapterdelegates4-kotlin-dsl:4.2.0'
-    implementation 'com.hannesdorfmann:adapterdelegates4-kotlin-dsl-layoutcontainer:4.2.0'
-
+    implementation "com.hannesdorfmann:adapterdelegates4-kotlin-dsl:$adapterDelegateVesrion"
+    implementation "com.hannesdorfmann:adapterdelegates4-kotlin-dsl-layoutcontainer:$adapterDelegateVesrion"
     implementation "androidx.test.espresso:espresso-idling-resource:$idlingResourceVersion"
 }

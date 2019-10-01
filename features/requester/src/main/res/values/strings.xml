@@ -2,4 +2,5 @@
 <resources>
     <string name="network_error">Network error</string>
     <string name="no_network_connection">No network connection</string>
+    <string name="img">Image</string>
 </resources>

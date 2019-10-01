@@ -6,15 +6,15 @@ import dagger.Module
 import dagger.android.ContributesAndroidInjector
 import dagger.multibindings.IntoMap
 import ejarosiewicz.com.apptemplate.requester.view.RequesterActivity
-import ejarosiewicz.com.apptemplate.requester.viewmodel.RequesterViewModelImpl
+import ejarosiewicz.com.apptemplate.requester.viewmodel.RequesterViewModel
 
 @Module(includes = [UseCaseModule::class])
 abstract class RequesterModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(RequesterViewModelImpl::class)
-    abstract fun bindsRequesterViewModel(requesterViewModel: RequesterViewModelImpl): ViewModel
+    @ViewModelKey(RequesterViewModel::class)
+    abstract fun bindsRequesterViewModel(requesterViewModel: RequesterViewModel): ViewModel
 
     @ContributesAndroidInjector
     abstract fun bindsRequesterActivity(): RequesterActivity

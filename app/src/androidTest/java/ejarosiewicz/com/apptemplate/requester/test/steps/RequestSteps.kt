@@ -8,7 +8,6 @@ import ejarosiewicz.com.apptemplate.R
 import ejarosiewicz.com.apptemplate.requester.test.robots.basic
 import ejarosiewicz.com.apptemplate.requester.test.robots.network
 
-
 class RequestSteps : GreenCoffeeSteps() {
 
     @Given("^Network is enabled$")

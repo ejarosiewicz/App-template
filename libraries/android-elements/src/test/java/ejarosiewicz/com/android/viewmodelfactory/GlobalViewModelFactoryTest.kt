@@ -9,10 +9,10 @@ import javax.inject.Provider
 
 class GlobalViewModelFactoryTest {
 
-    class DummyViewModel: ViewModel()
+    private class DummyViewModel: ViewModel()
 
-    val dummyViewModel = DummyViewModel()
-    val dummyViewModelProvider = Provider<ViewModel> { dummyViewModel }
+    private val dummyViewModel = DummyViewModel()
+    private val dummyViewModelProvider = Provider<ViewModel> { dummyViewModel }
 
     @Test
     fun `Return existing view model if has class type`() {
