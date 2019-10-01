@@ -24,17 +24,10 @@ class RequestSteps : GreenCoffeeSteps() {
         }
     }
 
-    @Given("^Network has errors$")
-    fun prepareResponseFail() {
-        network {
-            changeNetworkState(true)
-        }
-    }
-
-    @When("^I want to make request$")
-    fun makeSomeRequest() {
+    @When("^I refresh the site$")
+    fun refreshSite() {
         basic {
-            click(R.id.textView)
+            swipeDown(R.id.swipeRefresh)
         }
     }
 
@@ -62,14 +55,14 @@ class RequestSteps : GreenCoffeeSteps() {
     @Then("^I see no network message on the screen$")
     fun verifyNoNetworkMessage() {
         basic {
-            matchText(R.id.textView,"No network connection")
+            matchText(R.id.errorPrompt,"No network connection")
         }
     }
 
     @Then("^I see network error message on the screen$")
     fun verifyNetworErrorkMessage() {
         basic {
-            matchText(R.id.textView,"Network error")
+            matchText(R.id.errorPrompt,"Network error")
         }
     }
 }

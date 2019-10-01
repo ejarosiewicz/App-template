@@ -4,10 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import ejarosiewicz.com.android.connection.NetworkConnection
 import ejarosiewicz.com.android.logger.Logger
-import ejarosiewicz.com.apptemplate.requester.data.RequestFailed
-import ejarosiewicz.com.apptemplate.requester.data.RequestNoNetwork
-import ejarosiewicz.com.apptemplate.requester.data.RequestSuccessful
-import ejarosiewicz.com.apptemplate.requester.data.RequesterState
+import ejarosiewicz.com.apptemplate.requester.data.*
 import ejarosiewicz.com.apptemplate.requester.usecase.GetDataFromWebUseCase
 import ejarosiewicz.com.apptemplate.requester.usecase.data.DataToShow
 import ejarosiewicz.com.async.Scheduler
@@ -25,6 +22,7 @@ class RequesterViewModel @Inject constructor(
     val request = MutableLiveData<RequesterState>()
 
     fun loadDataFromWeb() {
+        request.value = RequestLoading
         if (networkConnection.isEnabled()) {
             makeAsynchronousRequest()
         } else {

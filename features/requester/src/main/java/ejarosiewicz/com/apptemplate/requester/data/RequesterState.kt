@@ -4,5 +4,6 @@ import ejarosiewicz.com.apptemplate.requester.usecase.data.DataToShow
 
 sealed class RequesterState
 class RequestSuccessful(val data: List<DataToShow>) : RequesterState()
+object RequestLoading : RequesterState()
 object RequestNoNetwork : RequesterState()
 object RequestFailed : RequesterState()

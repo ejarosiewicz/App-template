@@ -8,10 +8,7 @@ import assertk.assertions.isInstanceOf
 import com.nhaarman.mockitokotlin2.*
 import ejarosiewicz.com.android.connection.NetworkConnection
 import ejarosiewicz.com.android.logger.Logger
-import ejarosiewicz.com.apptemplate.requester.data.RequestFailed
-import ejarosiewicz.com.apptemplate.requester.data.RequestNoNetwork
-import ejarosiewicz.com.apptemplate.requester.data.RequestSuccessful
-import ejarosiewicz.com.apptemplate.requester.data.RequesterState
+import ejarosiewicz.com.apptemplate.requester.data.*
 import ejarosiewicz.com.apptemplate.requester.usecase.GetDataFromWebUseCase
 import ejarosiewicz.com.apptemplate.requester.usecase.data.DataToShow
 import ejarosiewicz.com.async.Scheduler
@@ -46,6 +43,12 @@ class RequesterViewModelTest {
     }
 
     @Test
+    fun `Notify loading state at the beginning of loading data from web`() {
+        systemUnderTest.loadDataFromWeb()
+
+        verify(mockStateObserver).onChanged(RequestLoading)
+    }
+    @Test
     fun `Fetch no network state`() {
         givenNoNetwork()
 
@@ -70,10 +73,10 @@ class RequesterViewModelTest {
 
         systemUnderTest.loadDataFromWeb()
 
-        verify(mockStateObserver).onChanged(stateCaptor.capture())
+        verify(mockStateObserver, times(2)).onChanged(stateCaptor.capture())
         stateCaptor.apply {
-            assertThat(firstValue).isInstanceOf(RequestSuccessful::class)
-            val gatheredData = (firstValue as RequestSuccessful).data
+            assertThat(secondValue).isInstanceOf(RequestSuccessful::class)
+            val gatheredData = (secondValue as RequestSuccessful).data
             assertThat(gatheredData).isEqualTo(stubResponse)
         }
     }
