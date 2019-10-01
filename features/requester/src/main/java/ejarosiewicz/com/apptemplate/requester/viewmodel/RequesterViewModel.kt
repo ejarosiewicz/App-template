@@ -4,7 +4,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import ejarosiewicz.com.android.connection.NetworkConnection
 import ejarosiewicz.com.android.logger.Logger
-import ejarosiewicz.com.apptemplate.requester.RequesterViewModel
 import ejarosiewicz.com.apptemplate.requester.data.*
 import ejarosiewicz.com.apptemplate.requester.usecase.GetDataFromWebUseCase
 import ejarosiewicz.com.apptemplate.requester.usecase.data.DataToShow
