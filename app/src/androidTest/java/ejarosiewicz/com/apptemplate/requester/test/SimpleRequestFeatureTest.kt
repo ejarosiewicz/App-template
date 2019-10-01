@@ -29,7 +29,6 @@ class SimpleRequestFeatureTest(scenarioConfig: ScenarioConfig) : GreenCoffeeTest
     private lateinit var idlingResource: IdlingResource
     private lateinit var mockResponseContent: String
 
-
     companion object {
         @JvmStatic
         @Parameterized.Parameters(name = "{0}")

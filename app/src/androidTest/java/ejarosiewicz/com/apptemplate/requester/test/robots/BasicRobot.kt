@@ -11,8 +11,8 @@ fun basic(function: BasicRobot.() -> Unit) = BasicRobot().apply { function() }
 
 class BasicRobot {
 
-    fun click(resId: Int): ViewInteraction =
-        onView((withId(resId))).perform(ViewActions.click())
+    fun swipeDown(resId: Int): ViewInteraction =
+        onView((withId(resId))).perform(ViewActions.swipeDown())
 
     fun matchText(resId: Int, text: String): ViewInteraction =
         onView(resId).matchText(text)
