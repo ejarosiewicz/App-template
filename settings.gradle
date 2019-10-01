@@ -1,1 +1,6 @@
-include ':app', ':features:requester', ':libraries:android-elements', ':libraries:network', ':libraries:async'
+include ':app',
+        ':features:requester',
+        ':features:databaser',
+        ':libraries:android-elements',
+        ':libraries:network',
+        ':libraries:async'
