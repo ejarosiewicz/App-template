@@ -11,18 +11,18 @@ import ejarosiewicz.com.apptemplate.requester.usecase.data.DataToShow
 import ejarosiewicz.com.async.Scheduler
 import javax.inject.Inject
 
-class RequesterViewModelImpl @Inject constructor(
+class RequesterViewModel @Inject constructor(
     private val getDataFromWebUseCase: GetDataFromWebUseCase,
     private val scheduler: Scheduler,
     private val logger: Logger,
     private val networkConnection: NetworkConnection
-) : ViewModel(), RequesterViewModel {
+) : ViewModel() {
 
     private val subscriberTag = this::class.toString()
 
     val request = MutableLiveData<RequesterState>()
 
-    override fun loadDataFromWeb() {
+    fun loadDataFromWeb() {
         request.value = RequestLoading
         if (networkConnection.isEnabled()) {
             makeAsynchronousRequest()
@@ -31,14 +31,14 @@ class RequesterViewModelImpl @Inject constructor(
         }
     }
 
-    private fun makeAsynchronousRequest()=
+    private fun makeAsynchronousRequest() =
         scheduler.schedule(
             subscriber = subscriberTag,
             source = getDataFromWebUseCase.load(),
             onComplete = { data -> onLoadDataSuccess(data) },
             onError = { throwable -> onReceiveError(throwable) })
 
-    private fun notifyNoNetworkConnection(){
+    private fun notifyNoNetworkConnection() {
         request.value = RequestNoNetwork
     }
 

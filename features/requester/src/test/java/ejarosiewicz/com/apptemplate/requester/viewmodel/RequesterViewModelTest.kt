@@ -18,7 +18,7 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 
-class RequesterViewModelImplTest {
+class RequesterViewModelTest {
 
     @Rule
     @JvmField
@@ -34,7 +34,7 @@ class RequesterViewModelImplTest {
     private val mockNetworkConnection: NetworkConnection = mock()
 
 
-    private val systemUnderTest = RequesterViewModelImpl(mockGetDataFromWebUseCase,
+    private val systemUnderTest = RequesterViewModel(mockGetDataFromWebUseCase,
         testScheduler, mockLogger, mockNetworkConnection)
 
     @Before
@@ -87,7 +87,7 @@ class RequesterViewModelImplTest {
 
         systemUnderTest.loadDataFromWeb()
 
-        verify(mockLogger).logError(RequesterViewModelImpl::class.toString(), EXCEPTION_MESSAGE)
+        verify(mockLogger).logError(RequesterViewModel::class.toString(), EXCEPTION_MESSAGE)
     }
 
     @Test

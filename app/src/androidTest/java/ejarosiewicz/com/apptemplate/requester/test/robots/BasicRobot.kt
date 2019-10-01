@@ -7,27 +7,26 @@ import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.withId
 
-
 fun basic(function: BasicRobot.() -> Unit) = BasicRobot().apply { function() }
 
 class BasicRobot {
 
-    fun click(resId: Int) =
+    fun click(resId: Int): ViewInteraction =
         onView((withId(resId))).perform(ViewActions.click())
 
-    fun onView(resId: Int) =
-        onView((withId(resId)))
-
-    fun ViewInteraction.matchText(text: String) =
-        check(ViewAssertions.matches(ViewMatchers.withText(text)))
-
-    fun matchText(resId: Int, text: String) =
+    fun matchText(resId: Int, text: String): ViewInteraction =
         onView(resId).matchText(text)
 
-    fun ViewInteraction.isDisplayed() =
-        check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
-
-    fun isDisplayed(resId: Int) =
+    fun isDisplayed(resId: Int): ViewInteraction =
         onView(resId).isDisplayed()
+
+    private fun onView(resId: Int): ViewInteraction =
+        onView((withId(resId)))
+
+    private fun ViewInteraction.matchText(text: String): ViewInteraction =
+        check(ViewAssertions.matches(ViewMatchers.withText(text)))
+
+    private fun ViewInteraction.isDisplayed(): ViewInteraction =
+        check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
 
 }

@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.hannesdorfmann.adapterdelegates4.AdapterDelegate
 import ejarosiewicz.com.android.imageloader.ImageLoader
 import ejarosiewicz.com.apptemplate.requester.usecase.data.DataToShow
-import ejarosiewicz.com.apptemplate.requester.usecase.data.Header
 import ejarosiewicz.com.apptemplate.requester.usecase.data.NormalContent
 import ejarosiewicz.com.requester.R
 
