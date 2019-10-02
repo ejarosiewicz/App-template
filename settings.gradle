@@ -3,4 +3,5 @@ include ':app',
         ':features:databaser',
         ':libraries:android-elements',
         ':libraries:network',
-        ':libraries:async'
+        ':libraries:async',
+        ':libraries:database'
